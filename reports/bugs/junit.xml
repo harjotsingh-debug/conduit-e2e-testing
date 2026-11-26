@@ -1,0 +1,1718 @@
+<testsuites id="" name="" tests="93" failures="27" skipped="0" errors="0" time="84.968198">
+<testsuite name="articles.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="chromium" tests="6" failures="0" skipped="0" time="15.799" errors="0">
+<testcase name="Article workflows › TC04 - Create a new article [positive]" classname="articles.spec.js" time="2.939">
+</testcase>
+<testcase name="Article workflows › TC05 - Edit an existing article [positive]" classname="articles.spec.js" time="4.341">
+</testcase>
+<testcase name="Article workflows › TC06 - Delete an existing article [positive]" classname="articles.spec.js" time="2.738">
+</testcase>
+<testcase name="Article workflows › TC14 - Add and delete a comment [positive]" classname="articles.spec.js" time="3.106">
+</testcase>
+<testcase name="Article workflows › TC15 - Update profile settings [positive]" classname="articles.spec.js" time="2.213">
+</testcase>
+<testcase name="Article workflows › TC16 - Favorite and follow workflows [positive]" classname="articles.spec.js" time="0.462">
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="chromium" tests="7" failures="1" skipped="0" time="13.898" errors="0">
+<testcase name="Authentication › TC01 - Register a new user [positive]" classname="auth.spec.js" time="3.576">
+</testcase>
+<testcase name="Authentication › TC02 - Reject login with incorrect credentials [negative]" classname="auth.spec.js" time="1.802">
+</testcase>
+<testcase name="Authentication › TC03 - Reject access to protected API without authentication [negative]" classname="auth.spec.js" time="0.079">
+</testcase>
+<testcase name="Authentication › TC10 - Login with valid credentials [positive]" classname="auth.spec.js" time="1.941">
+</testcase>
+<testcase name="Authentication › TC11 - Logout ends the session [positive]" classname="auth.spec.js" time="3.534">
+</testcase>
+<testcase name="Authentication › TC12 - Reject registration with a duplicate email [negative]" classname="auth.spec.js" time="2.816">
+</testcase>
+<testcase name="Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass]" classname="auth.spec.js" time="0.15">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › auth.spec.js:86:3 › Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass] 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 422
+    Received: 201
+
+      92 |       data: { user: { ...data, email: invalidEmail } },
+      93 |     });
+    > 94 |     expect(res.status()).toBe(422);
+         |                          ^
+      95 |   });
+      96 | });
+      97 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\auth.spec.js:94:26
+
+    Error Context: ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="negative.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="chromium" tests="18" failures="8" skipped="0" time="52.755" errors="0">
+<testcase name="Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative]" classname="negative.spec.js" time="2.487">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › negative.spec.js:15:5 › Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative] 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      21 |         const respPromise = page.waitForResponse(isPostArticles);
+      22 |         await page.getByRole('button', { name: /publish article/i }).click();
+    > 23 |         expect.soft((await respPromise).status()).toBe(401);
+         |                                                   ^
+      24 |         await expect(page.locator('.error-messages')).toBeVisible();
+      25 |
+      26 |         const res = await request.get(`${API}/articles?author=fakeuser`);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:23:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC18 - Protected pages are not usable without a session [negative]" classname="negative.spec.js" time="1.733">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC19 - Clearing session data mid-use logs the user out [negative]" classname="negative.spec.js" time="4.532">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative]" classname="negative.spec.js" time="0.377">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="PUT" type="expect.toBe">
+<![CDATA[  [chromium] › negative.spec.js:50:3 › Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative] 
+
+    Error: PUT
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      57 |         headers: authHeaders(tampered), data: { article: { title: 'Hacked' } },
+      58 |     });
+    > 59 |     expect.soft(res.status(), 'PUT').toBe(401);
+         |                                      ^
+      60 |     res = await request.delete(`${API}/articles/${article.slug}`, { headers: authHeaders(tampered) });
+      61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:59:38
+
+    Error: DELETE
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      59 |     expect.soft(res.status(), 'PUT').toBe(401);
+      60 |     res = await request.delete(`${API}/articles/${article.slug}`, { headers: authHeaders(tampered) });
+    > 61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+         |                                         ^
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+      63 |     expect.soft(res.status(), 'GET /user').toBe(401);
+      64 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:61:41
+
+    Error: GET /user
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+    > 63 |     expect.soft(res.status(), 'GET /user').toBe(401);
+         |                                            ^
+      64 |
+      65 |     // Article untouched
+      66 |     res = await request.get(`${API}/articles/${article.slug}`);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:63:44
+
+    Error Context: ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Unauthorized access / authorization › TC21 - Unauthenticated write requests are rejected [negative]" classname="negative.spec.js" time="0.267">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC22 - A user cannot edit or delete another user&apos;s article [negative]" classname="negative.spec.js" time="0.276">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC23 - Edit/Delete controls are hidden from non-authors [negative]" classname="negative.spec.js" time="2.838">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC08 - Prevent article submission with missing required fields (client-side) [negative]" classname="negative.spec.js" time="2.665">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC17 - Server rejects empty article when client validation is bypassed [negative/bypass]" classname="negative.spec.js" time="1.715">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC25 - API rejects articles with missing fields [negative/bypass]" classname="negative.spec.js" time="1.094">
+</testcase>
+<testcase name="Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative]" classname="negative.spec.js" time="9.269">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › negative.spec.js:166:3 › Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative] 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.error-messages')
+    Expected: visible
+    Timeout: 7000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.error-messages') with timeout 7000ms
+      - waiting for locator('.error-messages')
+
+
+      178 |     await page.getByRole('button', { name: /publish article/i }).click();
+      179 |
+    > 180 |     await expect(page.locator('.error-messages')).toBeVisible();
+          |                                                   ^
+      181 |     await expect(page).not.toHaveURL(/article\/undefined/);
+      182 |     const res = await request.get(`${API}/articles?author=${user.username}`);
+      183 |     expect((await res.json()).articles).toHaveLength(0);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:180:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Network failures › TC24 - Server error (500) on login keeps user logged out [negative]" classname="negative.spec.js" time="9.022">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › negative.spec.js:186:3 › Network failures › TC24 - Server error (500) on login keeps user logged out [negative] 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.error-messages')
+    Expected: visible
+    Timeout: 7000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.error-messages') with timeout 7000ms
+      - waiting for locator('.error-messages')
+
+
+      198 |     await expect(page).toHaveURL(/login/);
+      199 |     await expect(page.getByRole('link', { name: /new article/i })).toHaveCount(0);
+    > 200 |     await expect(page.locator('.error-messages')).toBeVisible(); // user feedback expected
+          |                                                   ^
+      201 |   });
+      202 |
+      203 |   test('TC26 - Offline login must not leave the login page or create a session [negative]', async ({ page, context, request }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:200:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Network failures › TC26 - Offline login must not leave the login page or create a session [negative]" classname="negative.spec.js" time="10.815">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(page).toHaveURL(expected) failed" type="expect.toHaveURL">
+<![CDATA[  [chromium] › negative.spec.js:203:3 › Network failures › TC26 - Offline login must not leave the login page or create a session [negative] 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /login/
+    Received string:  "http://localhost:3000/#/"
+    Timeout: 7000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 7000ms
+        17 × locator resolved to <html lang="en">…</html>
+           - unexpected value "http://localhost:3000/#/"
+
+
+      216 |     expect.soft(stored && JSON.parse(stored).isAuth, 'no session should be stored').toBeFalsy();
+      217 |     expect.soft(await page.getByRole('link', { name: /new article/i }).count(), 'user must not look logged in').toBe(0);
+    > 218 |     await expect(page).toHaveURL(/login/);
+          |                        ^
+      219 |     });
+      220 | });
+      221 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:218:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge]" classname="negative.spec.js" time="0.636">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBeLessThan(expected)" type="expect.toBeLessThan">
+<![CDATA[  [chromium] › negative.spec.js:224:3 › Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge] 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 500
+    Received:   500
+
+      229 |         data: { article: { title: 'A'.repeat(5000), description: 'd', body: 'b' } },
+      230 |     });
+    > 231 |     expect(res.status()).toBeLessThan(500);
+          |                          ^
+      232 |     });
+      233 |
+      234 |     test('TC30 - Special characters in title render literally [edge]', async ({ page, request }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:231:26
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC30 - Special characters in title render literally [edge]" classname="negative.spec.js" time="1.25">
+</testcase>
+<testcase name="Edge cases › TC28 - Script injection in article body is not executed [edge/security]" classname="negative.spec.js" time="1.899">
+</testcase>
+<testcase name="Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative]" classname="negative.spec.js" time="0.148">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).not.toMatch(expected)" type="expect.not.toMatch">
+<![CDATA[  [chromium] › negative.spec.js:258:3 › Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative] 
+
+    Error: expect(received).not.toMatch(expected)
+
+    Expected pattern: not /already exists/i
+    Received string:      "Title already exists.. "
+
+      267 |     const msg = (await res.json()).errors.body[0];
+      268 |     expect(msg).toMatch(/title/i);
+    > 269 |     expect(msg).not.toMatch(/already exists/i);
+          |                     ^
+      270 |   });
+      271 |
+      272 |   test('TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]', async ({ request, playwright }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:269:21
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]" classname="negative.spec.js" time="1.732">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="rounds where a create failed or an article lost its author/tag" type="expect.toEqual">
+<![CDATA[  [chromium] › negative.spec.js:272:3 › Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency] 
+
+    Error: rounds where a create failed or an article lost its author/tag
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 82
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "round": 0,
+    +     "statuses": Array [
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +       500,
+    +       201,
+    +       500,
+    +       201,
+    +       201,
+    +       201,
+    +     ],
+    +     "stored": 5,
+    +   },
+    +   Object {
+    +     "round": 1,
+    +     "statuses": Array [
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +       201,
+    +       201,
+    +       201,
+    +     ],
+    +     "stored": 5,
+    +   },
+    +   Object {
+    +     "round": 2,
+    +     "statuses": Array [
+    +       201,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +     ],
+    +     "stored": 3,
+    +   },
+    +   Object {
+    +     "round": 3,
+    +     "statuses": Array [
+    +       201,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 2,
+    +   },
+    +   Object {
+    +     "round": 4,
+    +     "statuses": Array [
+    +       500,
+    +       201,
+    +       201,
+    +       500,
+    +       201,
+    +       201,
+    +       201,
+    +       201,
+    +       201,
+    +       201,
+    +     ],
+    +     "stored": 8,
+    +   },
+    + ]
+
+      297 |       if (statuses.some((st) => st !== 201) || stored !== N) failures.push({ round, statuses, stored });
+      298 |     }
+    > 299 |     expect(failures, 'rounds where a create failed or an article lost its author/tag').toEqual([]);
+          |                                                                                        ^
+      300 |   });
+      301 | });
+      302 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:299:88
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--chromium\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="articles.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="firefox" tests="6" failures="0" skipped="0" time="35.375" errors="0">
+<testcase name="Article workflows › TC04 - Create a new article [positive]" classname="articles.spec.js" time="7.577">
+</testcase>
+<testcase name="Article workflows › TC05 - Edit an existing article [positive]" classname="articles.spec.js" time="8.4">
+</testcase>
+<testcase name="Article workflows › TC06 - Delete an existing article [positive]" classname="articles.spec.js" time="7.34">
+</testcase>
+<testcase name="Article workflows › TC14 - Add and delete a comment [positive]" classname="articles.spec.js" time="7.327">
+</testcase>
+<testcase name="Article workflows › TC15 - Update profile settings [positive]" classname="articles.spec.js" time="4.324">
+</testcase>
+<testcase name="Article workflows › TC16 - Favorite and follow workflows [positive]" classname="articles.spec.js" time="0.407">
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="firefox" tests="7" failures="1" skipped="0" time="34.62" errors="0">
+<testcase name="Authentication › TC01 - Register a new user [positive]" classname="auth.spec.js" time="5.179">
+</testcase>
+<testcase name="Authentication › TC02 - Reject login with incorrect credentials [negative]" classname="auth.spec.js" time="4.892">
+</testcase>
+<testcase name="Authentication › TC03 - Reject access to protected API without authentication [negative]" classname="auth.spec.js" time="0.476">
+</testcase>
+<testcase name="Authentication › TC10 - Login with valid credentials [positive]" classname="auth.spec.js" time="8.021">
+</testcase>
+<testcase name="Authentication › TC11 - Logout ends the session [positive]" classname="auth.spec.js" time="8.092">
+</testcase>
+<testcase name="Authentication › TC12 - Reject registration with a duplicate email [negative]" classname="auth.spec.js" time="7.805">
+</testcase>
+<testcase name="Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass]" classname="auth.spec.js" time="0.155">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [firefox] › auth.spec.js:86:3 › Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass] 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 422
+    Received: 201
+
+      92 |       data: { user: { ...data, email: invalidEmail } },
+      93 |     });
+    > 94 |     expect(res.status()).toBe(422);
+         |                          ^
+      95 |   });
+      96 | });
+      97 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\auth.spec.js:94:26
+
+    Error Context: ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--firefox\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="negative.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="firefox" tests="18" failures="8" skipped="0" time="95.647" errors="0">
+<testcase name="Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative]" classname="negative.spec.js" time="6.123">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [firefox] › negative.spec.js:15:5 › Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative] 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      21 |         const respPromise = page.waitForResponse(isPostArticles);
+      22 |         await page.getByRole('button', { name: /publish article/i }).click();
+    > 23 |         expect.soft((await respPromise).status()).toBe(401);
+         |                                                   ^
+      24 |         await expect(page.locator('.error-messages')).toBeVisible();
+      25 |
+      26 |         const res = await request.get(`${API}/articles?author=fakeuser`);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:23:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC18 - Protected pages are not usable without a session [negative]" classname="negative.spec.js" time="7.198">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC19 - Clearing session data mid-use logs the user out [negative]" classname="negative.spec.js" time="6.938">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative]" classname="negative.spec.js" time="0.985">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="PUT" type="expect.toBe">
+<![CDATA[  [firefox] › negative.spec.js:50:3 › Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative] 
+
+    Error: PUT
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      57 |         headers: authHeaders(tampered), data: { article: { title: 'Hacked' } },
+      58 |     });
+    > 59 |     expect.soft(res.status(), 'PUT').toBe(401);
+         |                                      ^
+      60 |     res = await request.delete(`${API}/articles/${article.slug}`, { headers: authHeaders(tampered) });
+      61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:59:38
+
+    Error: DELETE
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      59 |     expect.soft(res.status(), 'PUT').toBe(401);
+      60 |     res = await request.delete(`${API}/articles/${article.slug}`, { headers: authHeaders(tampered) });
+    > 61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+         |                                         ^
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+      63 |     expect.soft(res.status(), 'GET /user').toBe(401);
+      64 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:61:41
+
+    Error: GET /user
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+    > 63 |     expect.soft(res.status(), 'GET /user').toBe(401);
+         |                                            ^
+      64 |
+      65 |     // Article untouched
+      66 |     res = await request.get(`${API}/articles/${article.slug}`);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:63:44
+
+    Error Context: ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--firefox\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Unauthorized access / authorization › TC21 - Unauthenticated write requests are rejected [negative]" classname="negative.spec.js" time="0.204">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC22 - A user cannot edit or delete another user&apos;s article [negative]" classname="negative.spec.js" time="0.251">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC23 - Edit/Delete controls are hidden from non-authors [negative]" classname="negative.spec.js" time="7.208">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC08 - Prevent article submission with missing required fields (client-side) [negative]" classname="negative.spec.js" time="4.78">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC17 - Server rejects empty article when client validation is bypassed [negative/bypass]" classname="negative.spec.js" time="4.923">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC25 - API rejects articles with missing fields [negative/bypass]" classname="negative.spec.js" time="0.737">
+</testcase>
+<testcase name="Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative]" classname="negative.spec.js" time="12.364">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [firefox] › negative.spec.js:166:3 › Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative] 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.error-messages')
+    Expected: visible
+    Timeout: 7000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.error-messages') with timeout 7000ms
+      - waiting for locator('.error-messages')
+
+
+      178 |     await page.getByRole('button', { name: /publish article/i }).click();
+      179 |
+    > 180 |     await expect(page.locator('.error-messages')).toBeVisible();
+          |                                                   ^
+      181 |     await expect(page).not.toHaveURL(/article\/undefined/);
+      182 |     const res = await request.get(`${API}/articles?author=${user.username}`);
+      183 |     expect((await res.json()).articles).toHaveLength(0);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:180:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Network failures › TC24 - Server error (500) on login keeps user logged out [negative]" classname="negative.spec.js" time="12.367">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [firefox] › negative.spec.js:186:3 › Network failures › TC24 - Server error (500) on login keeps user logged out [negative] 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.error-messages')
+    Expected: visible
+    Timeout: 7000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.error-messages') with timeout 7000ms
+      - waiting for locator('.error-messages')
+
+
+      198 |     await expect(page).toHaveURL(/login/);
+      199 |     await expect(page.getByRole('link', { name: /new article/i })).toHaveCount(0);
+    > 200 |     await expect(page.locator('.error-messages')).toBeVisible(); // user feedback expected
+          |                                                   ^
+      201 |   });
+      202 |
+      203 |   test('TC26 - Offline login must not leave the login page or create a session [negative]', async ({ page, context, request }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:200:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Network failures › TC26 - Offline login must not leave the login page or create a session [negative]" classname="negative.spec.js" time="16.529">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(page).toHaveURL(expected) failed" type="expect.toHaveURL">
+<![CDATA[  [firefox] › negative.spec.js:203:3 › Network failures › TC26 - Offline login must not leave the login page or create a session [negative] 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /login/
+    Received string:  "http://localhost:3000/#/"
+    Timeout: 7000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 7000ms
+        17 × locator resolved to <html lang="en">…</html>
+           - unexpected value "http://localhost:3000/#/"
+
+
+      216 |     expect.soft(stored && JSON.parse(stored).isAuth, 'no session should be stored').toBeFalsy();
+      217 |     expect.soft(await page.getByRole('link', { name: /new article/i }).count(), 'user must not look logged in').toBe(0);
+    > 218 |     await expect(page).toHaveURL(/login/);
+          |                        ^
+      219 |     });
+      220 | });
+      221 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:218:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge]" classname="negative.spec.js" time="0.236">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBeLessThan(expected)" type="expect.toBeLessThan">
+<![CDATA[  [firefox] › negative.spec.js:224:3 › Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge] 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 500
+    Received:   500
+
+      229 |         data: { article: { title: 'A'.repeat(5000), description: 'd', body: 'b' } },
+      230 |     });
+    > 231 |     expect(res.status()).toBeLessThan(500);
+          |                          ^
+      232 |     });
+      233 |
+      234 |     test('TC30 - Special characters in title render literally [edge]', async ({ page, request }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:231:26
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--firefox\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC30 - Special characters in title render literally [edge]" classname="negative.spec.js" time="5.809">
+</testcase>
+<testcase name="Edge cases › TC28 - Script injection in article body is not executed [edge/security]" classname="negative.spec.js" time="6.652">
+</testcase>
+<testcase name="Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative]" classname="negative.spec.js" time="0.169">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).not.toMatch(expected)" type="expect.not.toMatch">
+<![CDATA[  [firefox] › negative.spec.js:258:3 › Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative] 
+
+    Error: expect(received).not.toMatch(expected)
+
+    Expected pattern: not /already exists/i
+    Received string:      "Title already exists.. "
+
+      267 |     const msg = (await res.json()).errors.body[0];
+      268 |     expect(msg).toMatch(/title/i);
+    > 269 |     expect(msg).not.toMatch(/already exists/i);
+          |                     ^
+      270 |   });
+      271 |
+      272 |   test('TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]', async ({ request, playwright }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:269:21
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--firefox\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]" classname="negative.spec.js" time="2.174">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--firefox\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="rounds where a create failed or an article lost its author/tag" type="expect.toEqual">
+<![CDATA[  [firefox] › negative.spec.js:272:3 › Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency] 
+
+    Error: rounds where a create failed or an article lost its author/tag
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 82
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "round": 0,
+    +     "statuses": Array [
+    +       500,
+    +       201,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +       500,
+    +       201,
+    +     ],
+    +     "stored": 4,
+    +   },
+    +   Object {
+    +     "round": 1,
+    +     "statuses": Array [
+    +       201,
+    +       201,
+    +       201,
+    +       201,
+    +       500,
+    +       201,
+    +       201,
+    +       500,
+    +       500,
+    +       201,
+    +     ],
+    +     "stored": 7,
+    +   },
+    +   Object {
+    +     "round": 2,
+    +     "statuses": Array [
+    +       500,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 2,
+    +   },
+    +   Object {
+    +     "round": 3,
+    +     "statuses": Array [
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 2,
+    +   },
+    +   Object {
+    +     "round": 4,
+    +     "statuses": Array [
+    +       201,
+    +       500,
+    +       500,
+    +       201,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 3,
+    +   },
+    + ]
+
+      297 |       if (statuses.some((st) => st !== 201) || stored !== N) failures.push({ round, statuses, stored });
+      298 |     }
+    > 299 |     expect(failures, 'rounds where a create failed or an article lost its author/tag').toEqual([]);
+          |                                                                                        ^
+      300 |   });
+      301 | });
+      302 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:299:88
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--firefox\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="articles.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="webkit" tests="6" failures="0" skipped="0" time="22.54" errors="0">
+<testcase name="Article workflows › TC04 - Create a new article [positive]" classname="articles.spec.js" time="4.681">
+</testcase>
+<testcase name="Article workflows › TC05 - Edit an existing article [positive]" classname="articles.spec.js" time="6.523">
+</testcase>
+<testcase name="Article workflows › TC06 - Delete an existing article [positive]" classname="articles.spec.js" time="3.666">
+</testcase>
+<testcase name="Article workflows › TC14 - Add and delete a comment [positive]" classname="articles.spec.js" time="3.853">
+</testcase>
+<testcase name="Article workflows › TC15 - Update profile settings [positive]" classname="articles.spec.js" time="3.494">
+</testcase>
+<testcase name="Article workflows › TC16 - Favorite and follow workflows [positive]" classname="articles.spec.js" time="0.323">
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="webkit" tests="7" failures="1" skipped="0" time="18.384" errors="0">
+<testcase name="Authentication › TC01 - Register a new user [positive]" classname="auth.spec.js" time="3.789">
+</testcase>
+<testcase name="Authentication › TC02 - Reject login with incorrect credentials [negative]" classname="auth.spec.js" time="3.257">
+</testcase>
+<testcase name="Authentication › TC03 - Reject access to protected API without authentication [negative]" classname="auth.spec.js" time="0.049">
+</testcase>
+<testcase name="Authentication › TC10 - Login with valid credentials [positive]" classname="auth.spec.js" time="2.993">
+</testcase>
+<testcase name="Authentication › TC11 - Logout ends the session [positive]" classname="auth.spec.js" time="5.311">
+</testcase>
+<testcase name="Authentication › TC12 - Reject registration with a duplicate email [negative]" classname="auth.spec.js" time="2.846">
+</testcase>
+<testcase name="Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass]" classname="auth.spec.js" time="0.139">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [webkit] › auth.spec.js:86:3 › Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass] 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 422
+    Received: 201
+
+      92 |       data: { user: { ...data, email: invalidEmail } },
+      93 |     });
+    > 94 |     expect(res.status()).toBe(422);
+         |                          ^
+      95 |   });
+      96 | });
+      97 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\auth.spec.js:94:26
+
+    Error Context: ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--webkit\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="negative.spec.js" timestamp="2026-11-26T11:57:30.949Z" hostname="webkit" tests="18" failures="8" skipped="0" time="59.205" errors="0">
+<testcase name="Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative]" classname="negative.spec.js" time="3.328">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [webkit] › negative.spec.js:15:5 › Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative] 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      21 |         const respPromise = page.waitForResponse(isPostArticles);
+      22 |         await page.getByRole('button', { name: /publish article/i }).click();
+    > 23 |         expect.soft((await respPromise).status()).toBe(401);
+         |                                                   ^
+      24 |         await expect(page.locator('.error-messages')).toBeVisible();
+      25 |
+      26 |         const res = await request.get(`${API}/articles?author=fakeuser`);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:23:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC18 - Protected pages are not usable without a session [negative]" classname="negative.spec.js" time="2.698">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC19 - Clearing session data mid-use logs the user out [negative]" classname="negative.spec.js" time="5.147">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative]" classname="negative.spec.js" time="0.231">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="PUT" type="expect.toBe">
+<![CDATA[  [webkit] › negative.spec.js:50:3 › Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative] 
+
+    Error: PUT
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      57 |         headers: authHeaders(tampered), data: { article: { title: 'Hacked' } },
+      58 |     });
+    > 59 |     expect.soft(res.status(), 'PUT').toBe(401);
+         |                                      ^
+      60 |     res = await request.delete(`${API}/articles/${article.slug}`, { headers: authHeaders(tampered) });
+      61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:59:38
+
+    Error: DELETE
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      59 |     expect.soft(res.status(), 'PUT').toBe(401);
+      60 |     res = await request.delete(`${API}/articles/${article.slug}`, { headers: authHeaders(tampered) });
+    > 61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+         |                                         ^
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+      63 |     expect.soft(res.status(), 'GET /user').toBe(401);
+      64 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:61:41
+
+    Error: GET /user
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 500
+
+      61 |     expect.soft(res.status(), 'DELETE').toBe(401);
+      62 |     res = await request.get(`${API}/user`, { headers: authHeaders(tampered) });
+    > 63 |     expect.soft(res.status(), 'GET /user').toBe(401);
+         |                                            ^
+      64 |
+      65 |     // Article untouched
+      66 |     res = await request.get(`${API}/articles/${article.slug}`);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:63:44
+
+    Error Context: ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--webkit\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Unauthorized access / authorization › TC21 - Unauthenticated write requests are rejected [negative]" classname="negative.spec.js" time="0.211">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC22 - A user cannot edit or delete another user&apos;s article [negative]" classname="negative.spec.js" time="0.366">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC23 - Edit/Delete controls are hidden from non-authors [negative]" classname="negative.spec.js" time="2.493">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC08 - Prevent article submission with missing required fields (client-side) [negative]" classname="negative.spec.js" time="3.227">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC17 - Server rejects empty article when client validation is bypassed [negative/bypass]" classname="negative.spec.js" time="2.909">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC25 - API rejects articles with missing fields [negative/bypass]" classname="negative.spec.js" time="0.179">
+</testcase>
+<testcase name="Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative]" classname="negative.spec.js" time="10.232">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [webkit] › negative.spec.js:166:3 › Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative] 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.error-messages')
+    Expected: visible
+    Timeout: 7000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.error-messages') with timeout 7000ms
+      - waiting for locator('.error-messages')
+
+
+      178 |     await page.getByRole('button', { name: /publish article/i }).click();
+      179 |
+    > 180 |     await expect(page.locator('.error-messages')).toBeVisible();
+          |                                                   ^
+      181 |     await expect(page).not.toHaveURL(/article\/undefined/);
+      182 |     const res = await request.get(`${API}/articles?author=${user.username}`);
+      183 |     expect((await res.json()).articles).toHaveLength(0);
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:180:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Network failures › TC24 - Server error (500) on login keeps user logged out [negative]" classname="negative.spec.js" time="10.453">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [webkit] › negative.spec.js:186:3 › Network failures › TC24 - Server error (500) on login keeps user logged out [negative] 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.error-messages')
+    Expected: visible
+    Timeout: 7000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.error-messages') with timeout 7000ms
+      - waiting for locator('.error-messages')
+
+
+      198 |     await expect(page).toHaveURL(/login/);
+      199 |     await expect(page.getByRole('link', { name: /new article/i })).toHaveCount(0);
+    > 200 |     await expect(page.locator('.error-messages')).toBeVisible(); // user feedback expected
+          |                                                   ^
+      201 |   });
+      202 |
+      203 |   test('TC26 - Offline login must not leave the login page or create a session [negative]', async ({ page, context, request }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:200:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Network failures › TC26 - Offline login must not leave the login page or create a session [negative]" classname="negative.spec.js" time="11.746">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\video.webm]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(page).toHaveURL(expected) failed" type="expect.toHaveURL">
+<![CDATA[  [webkit] › negative.spec.js:203:3 › Network failures › TC26 - Offline login must not leave the login page or create a session [negative] 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /login/
+    Received string:  "http://localhost:3000/#/"
+    Timeout: 7000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 7000ms
+        17 × locator resolved to <html lang="en">…</html>
+           - unexpected value "http://localhost:3000/#/"
+
+
+      216 |     expect.soft(stored && JSON.parse(stored).isAuth, 'no session should be stored').toBeFalsy();
+      217 |     expect.soft(await page.getByRole('link', { name: /new article/i }).count(), 'user must not look logged in').toBe(0);
+    > 218 |     await expect(page).toHaveURL(/login/);
+          |                        ^
+      219 |     });
+      220 | });
+      221 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:218:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge]" classname="negative.spec.js" time="0.179">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBeLessThan(expected)" type="expect.toBeLessThan">
+<![CDATA[  [webkit] › negative.spec.js:224:3 › Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge] 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 500
+    Received:   500
+
+      229 |         data: { article: { title: 'A'.repeat(5000), description: 'd', body: 'b' } },
+      230 |     });
+    > 231 |     expect(res.status()).toBeLessThan(500);
+          |                          ^
+      232 |     });
+      233 |
+      234 |     test('TC30 - Special characters in title render literally [edge]', async ({ page, request }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:231:26
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--webkit\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC30 - Special characters in title render literally [edge]" classname="negative.spec.js" time="1.8">
+</testcase>
+<testcase name="Edge cases › TC28 - Script injection in article body is not executed [edge/security]" classname="negative.spec.js" time="2.515">
+</testcase>
+<testcase name="Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative]" classname="negative.spec.js" time="0.133">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).not.toMatch(expected)" type="expect.not.toMatch">
+<![CDATA[  [webkit] › negative.spec.js:258:3 › Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative] 
+
+    Error: expect(received).not.toMatch(expected)
+
+    Expected pattern: not /already exists/i
+    Received string:      "Title already exists.. "
+
+      267 |     const msg = (await res.json()).errors.body[0];
+      268 |     expect(msg).toMatch(/title/i);
+    > 269 |     expect(msg).not.toMatch(/already exists/i);
+          |                     ^
+      270 |   });
+      271 |
+      272 |   test('TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]', async ({ request, playwright }) => {
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:269:21
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--webkit\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]" classname="negative.spec.js" time="1.358">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--webkit\error-context.md]]
+
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="rounds where a create failed or an article lost its author/tag" type="expect.toEqual">
+<![CDATA[  [webkit] › negative.spec.js:272:3 › Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency] 
+
+    Error: rounds where a create failed or an article lost its author/tag
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 82
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "round": 0,
+    +     "statuses": Array [
+    +       500,
+    +       201,
+    +       201,
+    +       500,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       201,
+    +       500,
+    +     ],
+    +     "stored": 4,
+    +   },
+    +   Object {
+    +     "round": 1,
+    +     "statuses": Array [
+    +       500,
+    +       500,
+    +       201,
+    +       500,
+    +       201,
+    +       500,
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 3,
+    +   },
+    +   Object {
+    +     "round": 2,
+    +     "statuses": Array [
+    +       500,
+    +       201,
+    +       500,
+    +       500,
+    +       201,
+    +       201,
+    +       201,
+    +       201,
+    +       500,
+    +       201,
+    +     ],
+    +     "stored": 6,
+    +   },
+    +   Object {
+    +     "round": 3,
+    +     "statuses": Array [
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 1,
+    +   },
+    +   Object {
+    +     "round": 4,
+    +     "statuses": Array [
+    +       201,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +       500,
+    +     ],
+    +     "stored": 1,
+    +   },
+    + ]
+
+      297 |       if (statuses.some((st) => st !== 201) || stored !== N) failures.push({ round, statuses, stored });
+      298 |     }
+    > 299 |     expect(failures, 'rounds where a create failed or an article lost its author/tag').toEqual([]);
+          |                                                                                        ^
+      300 |   });
+      301 | });
+      302 |
+        at C:\Users\Harjo\OneDrive\Desktop\conduit-realworld-example-app\conduit-realworld-example-app\tests\e2e\negative.spec.js:299:88
+
+    Error Context: ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--webkit\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>

@@ -8,5 +8,6 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "frontend/src/setupTests.js",
     css: true,
+    exclude: ['tests/e2e/**', 'node_modules/**']
   },
 });

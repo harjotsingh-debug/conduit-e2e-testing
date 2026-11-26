@@ -1,0 +1,449 @@
+<testsuites id="" name="" tests="93" failures="0" skipped="0" errors="0" time="76.13585900000001">
+<testsuite name="articles.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="chromium" tests="6" failures="0" skipped="0" time="16.035" errors="0">
+<testcase name="Article workflows › TC04 - Create a new article [positive]" classname="articles.spec.js" time="2.988">
+</testcase>
+<testcase name="Article workflows › TC05 - Edit an existing article [positive]" classname="articles.spec.js" time="3.729">
+</testcase>
+<testcase name="Article workflows › TC06 - Delete an existing article [positive]" classname="articles.spec.js" time="3.193">
+</testcase>
+<testcase name="Article workflows › TC14 - Add and delete a comment [positive]" classname="articles.spec.js" time="3.385">
+</testcase>
+<testcase name="Article workflows › TC15 - Update profile settings [positive]" classname="articles.spec.js" time="2.253">
+</testcase>
+<testcase name="Article workflows › TC16 - Favorite and follow workflows [positive]" classname="articles.spec.js" time="0.487">
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="chromium" tests="7" failures="0" skipped="0" time="11.225" errors="0">
+<testcase name="Authentication › TC01 - Register a new user [positive]" classname="auth.spec.js" time="2.595">
+</testcase>
+<testcase name="Authentication › TC02 - Reject login with incorrect credentials [negative]" classname="auth.spec.js" time="1.667">
+</testcase>
+<testcase name="Authentication › TC03 - Reject access to protected API without authentication [negative]" classname="auth.spec.js" time="0.078">
+</testcase>
+<testcase name="Authentication › TC10 - Login with valid credentials [positive]" classname="auth.spec.js" time="2.024">
+</testcase>
+<testcase name="Authentication › TC11 - Logout ends the session [positive]" classname="auth.spec.js" time="3.16">
+</testcase>
+<testcase name="Authentication › TC12 - Reject registration with a duplicate email [negative]" classname="auth.spec.js" time="1.562">
+</testcase>
+<testcase name="Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass]" classname="auth.spec.js" time="0.139">
+<properties>
+<property name="fail" value="BUG-002: server accepts malformed e-mail addresses">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="negative.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="chromium" tests="18" failures="0" skipped="0" time="50.829" errors="0">
+<testcase name="Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative]" classname="negative.spec.js" time="2.256">
+<properties>
+<property name="fail" value="BUG-003: invalid JWT returns 500 instead of 401">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC18 - Protected pages are not usable without a session [negative]" classname="negative.spec.js" time="1.836">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC19 - Clearing session data mid-use logs the user out [negative]" classname="negative.spec.js" time="3.883">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative]" classname="negative.spec.js" time="0.194">
+<properties>
+<property name="fail" value="BUG-003: tampered JWT returns 500 instead of 401">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Unauthorized access / authorization › TC21 - Unauthenticated write requests are rejected [negative]" classname="negative.spec.js" time="0.322">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC22 - A user cannot edit or delete another user&apos;s article [negative]" classname="negative.spec.js" time="0.541">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC23 - Edit/Delete controls are hidden from non-authors [negative]" classname="negative.spec.js" time="1.656">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC08 - Prevent article submission with missing required fields (client-side) [negative]" classname="negative.spec.js" time="2.002">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC17 - Server rejects empty article when client validation is bypassed [negative/bypass]" classname="negative.spec.js" time="1.54">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC25 - API rejects articles with missing fields [negative/bypass]" classname="negative.spec.js" time="0.161">
+</testcase>
+<testcase name="Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative]" classname="negative.spec.js" time="10.341">
+<properties>
+<property name="fail" value="BUG-001: silent failure + navigation to /article/undefined">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Network failures › TC24 - Server error (500) on login keeps user logged out [negative]" classname="negative.spec.js" time="9.45">
+<properties>
+<property name="fail" value="BUG-006: no user feedback on server 500 at login">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Network failures › TC26 - Offline login must not leave the login page or create a session [negative]" classname="negative.spec.js" time="11.039">
+<properties>
+<property name="fail" value="BUG-007: failed (offline) login navigates away from /login">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge]" classname="negative.spec.js" time="0.121">
+<properties>
+<property name="fail" value="BUG-004: 5000-char title causes 500">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC30 - Special characters in title render literally [edge]" classname="negative.spec.js" time="1.478">
+</testcase>
+<testcase name="Edge cases › TC28 - Script injection in article body is not executed [edge/security]" classname="negative.spec.js" time="2.17">
+</testcase>
+<testcase name="Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative]" classname="negative.spec.js" time="0.158">
+<properties>
+<property name="fail" value="BUG-005: whitespace title -&gt; 500 and an orphan article row is saved">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]" classname="negative.spec.js" time="1.681">
+<properties>
+<property name="fail" value="BUG-008: race on Tag insert -&gt; 500 and orphan articles (no transaction)">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="articles.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="firefox" tests="6" failures="0" skipped="0" time="39.045" errors="0">
+<testcase name="Article workflows › TC04 - Create a new article [positive]" classname="articles.spec.js" time="6.833">
+</testcase>
+<testcase name="Article workflows › TC05 - Edit an existing article [positive]" classname="articles.spec.js" time="8.207">
+</testcase>
+<testcase name="Article workflows › TC06 - Delete an existing article [positive]" classname="articles.spec.js" time="6.792">
+</testcase>
+<testcase name="Article workflows › TC14 - Add and delete a comment [positive]" classname="articles.spec.js" time="7.726">
+</testcase>
+<testcase name="Article workflows › TC15 - Update profile settings [positive]" classname="articles.spec.js" time="9.117">
+</testcase>
+<testcase name="Article workflows › TC16 - Favorite and follow workflows [positive]" classname="articles.spec.js" time="0.37">
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="firefox" tests="7" failures="0" skipped="0" time="33.228" errors="0">
+<testcase name="Authentication › TC01 - Register a new user [positive]" classname="auth.spec.js" time="8.817">
+</testcase>
+<testcase name="Authentication › TC02 - Reject login with incorrect credentials [negative]" classname="auth.spec.js" time="5.033">
+</testcase>
+<testcase name="Authentication › TC03 - Reject access to protected API without authentication [negative]" classname="auth.spec.js" time="0.029">
+</testcase>
+<testcase name="Authentication › TC10 - Login with valid credentials [positive]" classname="auth.spec.js" time="5.025">
+</testcase>
+<testcase name="Authentication › TC11 - Logout ends the session [positive]" classname="auth.spec.js" time="8.661">
+</testcase>
+<testcase name="Authentication › TC12 - Reject registration with a duplicate email [negative]" classname="auth.spec.js" time="5.54">
+</testcase>
+<testcase name="Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass]" classname="auth.spec.js" time="0.123">
+<properties>
+<property name="fail" value="BUG-002: server accepts malformed e-mail addresses">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="negative.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="firefox" tests="18" failures="0" skipped="0" time="97.641" errors="0">
+<testcase name="Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative]" classname="negative.spec.js" time="6.875">
+<properties>
+<property name="fail" value="BUG-003: invalid JWT returns 500 instead of 401">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC18 - Protected pages are not usable without a session [negative]" classname="negative.spec.js" time="5.962">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC19 - Clearing session data mid-use logs the user out [negative]" classname="negative.spec.js" time="9.038">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative]" classname="negative.spec.js" time="0.203">
+<properties>
+<property name="fail" value="BUG-003: tampered JWT returns 500 instead of 401">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Unauthorized access / authorization › TC21 - Unauthenticated write requests are rejected [negative]" classname="negative.spec.js" time="0.305">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC22 - A user cannot edit or delete another user&apos;s article [negative]" classname="negative.spec.js" time="0.295">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC23 - Edit/Delete controls are hidden from non-authors [negative]" classname="negative.spec.js" time="6.694">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC08 - Prevent article submission with missing required fields (client-side) [negative]" classname="negative.spec.js" time="6.794">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC17 - Server rejects empty article when client validation is bypassed [negative/bypass]" classname="negative.spec.js" time="6.766">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC25 - API rejects articles with missing fields [negative/bypass]" classname="negative.spec.js" time="0.174">
+</testcase>
+<testcase name="Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative]" classname="negative.spec.js" time="13.706">
+<properties>
+<property name="fail" value="BUG-001: silent failure + navigation to /article/undefined">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Network failures › TC24 - Server error (500) on login keeps user logged out [negative]" classname="negative.spec.js" time="12.482">
+<properties>
+<property name="fail" value="BUG-006: no user feedback on server 500 at login">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Network failures › TC26 - Offline login must not leave the login page or create a session [negative]" classname="negative.spec.js" time="14.41">
+<properties>
+<property name="fail" value="BUG-007: failed (offline) login navigates away from /login">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge]" classname="negative.spec.js" time="0.131">
+<properties>
+<property name="fail" value="BUG-004: 5000-char title causes 500">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC30 - Special characters in title render literally [edge]" classname="negative.spec.js" time="5.485">
+</testcase>
+<testcase name="Edge cases › TC28 - Script injection in article body is not executed [edge/security]" classname="negative.spec.js" time="5.648">
+</testcase>
+<testcase name="Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative]" classname="negative.spec.js" time="0.126">
+<properties>
+<property name="fail" value="BUG-005: whitespace title -&gt; 500 and an orphan article row is saved">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]" classname="negative.spec.js" time="2.547">
+<properties>
+<property name="fail" value="BUG-008: race on Tag insert -&gt; 500 and orphan articles (no transaction)">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--firefox\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="articles.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="webkit" tests="6" failures="0" skipped="0" time="21.127" errors="0">
+<testcase name="Article workflows › TC04 - Create a new article [positive]" classname="articles.spec.js" time="4.943">
+</testcase>
+<testcase name="Article workflows › TC05 - Edit an existing article [positive]" classname="articles.spec.js" time="5.783">
+</testcase>
+<testcase name="Article workflows › TC06 - Delete an existing article [positive]" classname="articles.spec.js" time="3.143">
+</testcase>
+<testcase name="Article workflows › TC14 - Add and delete a comment [positive]" classname="articles.spec.js" time="3.72">
+</testcase>
+<testcase name="Article workflows › TC15 - Update profile settings [positive]" classname="articles.spec.js" time="3.173">
+</testcase>
+<testcase name="Article workflows › TC16 - Favorite and follow workflows [positive]" classname="articles.spec.js" time="0.365">
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="webkit" tests="7" failures="0" skipped="0" time="20.518" errors="0">
+<testcase name="Authentication › TC01 - Register a new user [positive]" classname="auth.spec.js" time="3.808">
+</testcase>
+<testcase name="Authentication › TC02 - Reject login with incorrect credentials [negative]" classname="auth.spec.js" time="3.54">
+</testcase>
+<testcase name="Authentication › TC03 - Reject access to protected API without authentication [negative]" classname="auth.spec.js" time="0.033">
+</testcase>
+<testcase name="Authentication › TC10 - Login with valid credentials [positive]" classname="auth.spec.js" time="3.416">
+</testcase>
+<testcase name="Authentication › TC11 - Logout ends the session [positive]" classname="auth.spec.js" time="5.828">
+</testcase>
+<testcase name="Authentication › TC12 - Reject registration with a duplicate email [negative]" classname="auth.spec.js" time="3.78">
+</testcase>
+<testcase name="Authentication › TC13 - Reject registration with an invalid email at API level [negative/bypass]" classname="auth.spec.js" time="0.113">
+<properties>
+<property name="fail" value="BUG-002: server accepts malformed e-mail addresses">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\auth-Authentication-TC13---6b018--API-level-negative-bypass--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="negative.spec.js" timestamp="2026-11-26T11:56:11.389Z" hostname="webkit" tests="18" failures="0" skipped="0" time="61.686" errors="0">
+<testcase name="Session-data technique (localStorage manipulation) › TC07 - Reject article creation with an invalid session token [negative]" classname="negative.spec.js" time="3.488">
+<properties>
+<property name="fail" value="BUG-003: invalid JWT returns 500 instead of 401">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-66ef4-lid-session-token-negative--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC18 - Protected pages are not usable without a session [negative]" classname="negative.spec.js" time="3.338">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC19 - Clearing session data mid-use logs the user out [negative]" classname="negative.spec.js" time="5.405">
+</testcase>
+<testcase name="Session-data technique (localStorage manipulation) › TC20 - Tampered token is rejected on write operations [negative]" classname="negative.spec.js" time="0.191">
+<properties>
+<property name="fail" value="BUG-003: tampered JWT returns 500 instead of 401">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Session-data-tech-fbd7c--write-operations-negative--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Unauthorized access / authorization › TC21 - Unauthenticated write requests are rejected [negative]" classname="negative.spec.js" time="0.198">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC22 - A user cannot edit or delete another user&apos;s article [negative]" classname="negative.spec.js" time="0.294">
+</testcase>
+<testcase name="Unauthorized access / authorization › TC23 - Edit/Delete controls are hidden from non-authors [negative]" classname="negative.spec.js" time="3.121">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC08 - Prevent article submission with missing required fields (client-side) [negative]" classname="negative.spec.js" time="3.08">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC17 - Server rejects empty article when client validation is bypassed [negative/bypass]" classname="negative.spec.js" time="3.133">
+</testcase>
+<testcase name="Form validation (native + bypass technique) › TC25 - API rejects articles with missing fields [negative/bypass]" classname="negative.spec.js" time="0.197">
+</testcase>
+<testcase name="Network failures › TC09 - Failed network request on publish must show an error, not navigate [negative]" classname="negative.spec.js" time="10.3">
+<properties>
+<property name="fail" value="BUG-001: silent failure + navigation to /article/undefined">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--a607d-rror-not-navigate-negative--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Network failures › TC24 - Server error (500) on login keeps user logged out [negative]" classname="negative.spec.js" time="10.228">
+<properties>
+<property name="fail" value="BUG-006: no user feedback on server 500 at login">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--05027-s-user-logged-out-negative--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Network failures › TC26 - Offline login must not leave the login page or create a session [negative]" classname="negative.spec.js" time="11.322">
+<properties>
+<property name="fail" value="BUG-007: failed (offline) login navigates away from /login">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Network-failures--178fe--create-a-session-negative--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC27 - Very long title is rejected cleanly, not with a 500 [edge]" classname="negative.spec.js" time="0.122">
+<properties>
+<property name="fail" value="BUG-004: 5000-char title causes 500">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC27---14d83-leanly-not-with-a-500-edge--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC30 - Special characters in title render literally [edge]" classname="negative.spec.js" time="2.509">
+</testcase>
+<testcase name="Edge cases › TC28 - Script injection in article body is not executed [edge/security]" classname="negative.spec.js" time="2.847">
+</testcase>
+<testcase name="Edge cases › TC29 - Whitespace-only title is rejected by the API [edge/negative]" classname="negative.spec.js" time="0.118">
+<properties>
+<property name="fail" value="BUG-005: whitespace title -&gt; 500 and an orphan article row is saved">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC29---cb188-d-by-the-API-edge-negative--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Edge cases › TC31 - Concurrent articles introducing the same new tag all succeed [edge/concurrency]" classname="negative.spec.js" time="1.795">
+<properties>
+<property name="fail" value="BUG-008: race on Tag insert -&gt; 500 and orphan articles (no transaction)">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\negative-Edge-cases-TC31---1074c-l-succeed-edge-concurrency--webkit\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
