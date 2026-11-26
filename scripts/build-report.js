@@ -80,9 +80,9 @@ function md(text, { shift = 0, onMermaid } = {}) {
 const read = (f) => fs.readFileSync(path.join(docs, f), 'utf8');
 const evidence = {
   'BUG-001': ['evidence/BUG-001_TC09_publish_network_failure.png', 'BUG-001 / TC09: after the aborted publish request the app lands on #/article/undefined (404).'],
-  'BUG-003': ['evidence/BUG-003_TC07_invalid_token.png', 'BUG-003 / TC07: editor after publishing with a forged token (server answered 500, not 401).'],
-  'BUG-006': ['evidence/BUG-006_TC24_login_500_blank_screen.png', 'BUG-006 / TC24: login receives a 500, and the whole React app unmounts (blank screen).'],
-  'BUG-007': ['evidence/BUG-007_TC26_offline_login.png', 'BUG-007 / TC26: login while offline navigates to #/ and renders a blank screen.'],
+  'BUG-003': ['evidence/BUG-003_TC07_invalid_token.png', 'BUG-003 / TC07: publishing with a forged token. The server answered 500 (not 401) and the raw library message "jwt malformed" is shown to the user.'],
+  'BUG-006': ['evidence/BUG-006_TC24_login_500_blank_screen.png', 'BUG-006 / TC24: evidence card from a live reproduction. URL, real (blank) viewport and the uncaught console error.'],
+  'BUG-007': ['evidence/BUG-007_TC26_offline_login.png', 'BUG-007 / TC26: evidence card from a live reproduction. The app left #/login for #/, then crashed (blank viewport, console error shown).'],
 };
 // Put each screenshot right after its bug section's table
 let bugs = md(read('BUG_REPORTS.md'), { shift: 1 });
@@ -107,7 +107,7 @@ const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Report</ti
   code { font-family: Consolas, monospace; font-size: 8.8pt; background: #f3f4f6; padding: 0 3px; border-radius: 3px; word-break: break-word; }
   pre { font-family: Consolas, monospace; font-size: 8.5pt; background: #f6f8fa; border: 1px solid #e1e4e8; padding: 8px; white-space: pre-wrap; }
   figure { margin: 8px 0 14px; text-align: center; page-break-inside: avoid; }
-  figure img { max-width: 100%; max-height: 300px; border: 1px solid #bbb; }
+  figure img { max-width: 100%; max-height: 330px; border: 1px solid #bbb; }
   figcaption { font-size: 8.5pt; color: #555; margin-top: 3px; }
   .cover { text-align: center; padding-top: 60px; }
   .cover h1 { page-break-before: avoid; border: none; font-size: 24pt; }
